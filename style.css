@@ -1,0 +1,39 @@
+
+body {
+    font-family: "Cantarell";
+}
+
+.gallery {
+    display: flex; 
+    flex-direction: column;
+    align-content: center; 
+    flex-wrap: wrap;
+    max-height: 4000px;
+    gap: 8px;
+}
+
+.gallery-item {
+    /* width: 100%; */
+    width: 400px;
+    /* max-width: 400px; */
+    height: auto; 
+}
+
+@media only screen and (max-width: 600px) {
+    /* Styles for mobile */
+    .gallery {
+        /* display: flex; 
+        flex-direction: column;  */
+        flex-wrap: nowrap;
+        max-height: none;
+        /* gap: 8px; */
+    }
+    .gallery-item {
+        max-width: none;
+        width: 100%;
+        height: auto; 
+    }
+}
+
+
+
