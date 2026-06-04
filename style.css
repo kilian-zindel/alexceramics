@@ -1,14 +1,27 @@
 
-body {
-    font-family: "Cantarell";
+/* GLOBAL STYLES */
+:root {
+    --accent: #D06677;
 }
 
+body { 
+    background-color: white;
+    font-family: "Cantarell"; 
+}
+button { 
+    all: unset; 
+    cursor: pointer; 
+}
+
+/* IMAGE GALLERY */
 .gallery {
     display: flex; 
     flex-direction: column;
+    column-count: 3;
+    column-gap: 8px;
     align-content: center; 
     flex-wrap: wrap;
-    max-height: 4000px;
+    /* max-height: 4000px; */
     gap: 8px;
 }
 
@@ -22,6 +35,12 @@ body {
 
 .gallery-item.hide { 
     display: none; 
+}
+
+.filter {
+    display: block; 
+    width: max-content;
+    line-height: 1.2;
 }
 
 .filter:hover {
@@ -52,6 +71,4 @@ body {
         height: auto; 
     }
 }
-
-
 

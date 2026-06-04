@@ -5,40 +5,44 @@ const Category = Object.freeze({
 }) 
 
 const images = [
-    { title: "Untitled 07", category: Category.WARE,      filename: "IMG_5459.jpeg" },
-    { title: "Untitled 08", category: Category.PAINTING,  filename: "IMG_0527.jpg" },
-    { title: "Untitled 09", category: Category.SCULPTURE, filename: "Untitled_Artwork (4).jpg" },
-    { title: "Untitled 04", category: Category.SCULPTURE, filename: "Untitled_Artwork (1).JPG" },
-    { title: "Untitled 05", category: Category.SCULPTURE, filename: "Untitled_Artwork (2).jpg" },
-    { title: "Untitled 06", category: Category.WARE,      filename: "IMG_5442.jpeg" },
-    { title: "Untitled 01", category: Category.SCULPTURE, filename: "Untitled_Artwork.jpg" },
-    { title: "Untitled 02", category: Category.PAINTING,  filename: "IMG_5993.jpeg" },
-    { title: "Untitled 03", category: Category.WARE,      filename: "IMG_5480.jpeg" },
-    { title: "Untitled 10", category: Category.WARE,      filename: "IMG_5468.jpeg" },
-    { title: "Untitled 11", category: Category.SCULPTURE, filename: "IMG_5576.jpeg" },
-    { title: "Untitled 12", category: Category.WARE,      filename: "IMG_5477.jpeg" },
-    { title: "Untitled 13", category: Category.PAINTING,  filename: "IMG_0526.jpg" },
-    { title: "Untitled 14", category: Category.WARE,      filename: "IMG_5442.jpeg" },
-    { title: "Untitled 15", category: Category.SCULPTURE, filename: "Untitled_Artwork.JPG" },
-    { title: "Untitled 16", category: Category.WARE,      filename: "IMG_5443.jpeg" },
-    { title: "Untitled 17", category: Category.SCULPTURE, filename: "Untitled_Artwork (3).jpg" },
-    { title: "Untitled 18", category: Category.WARE,      filename: "IMG_5470.jpeg" },
-    { title: "Untitled 19", category: Category.SCULPTURE, filename: "Untitled_Artwork (1).jpg" },
-    { title: "Untitled 20", category: Category.PAINTING,  filename: "IMG_5594.jpeg" },
-    { title: "Untitled 21", category: Category.SCULPTURE, filename: "Untitled_Artwork (5).jpg" },
+    { title: "Untitled 07", category: Category.WARE,      filename: "Untitled_05.webp" },
+    { title: "Untitled 08", category: Category.PAINTING,  filename: "Untitled_02.webp" },
+    { title: "Untitled 09", category: Category.SCULPTURE, filename: "Untitled_17.webp" },
+    { title: "Untitled 04", category: Category.SCULPTURE, filename: "Untitled_13.webp" },
+    { title: "Untitled 05", category: Category.SCULPTURE, filename: "Untitled_15.webp" },
+    { title: "Untitled 06", category: Category.WARE,      filename: "Untitled_03.webp" },
+    { title: "Untitled 01", category: Category.SCULPTURE, filename: "Untitled_20.webp" },
+    { title: "Untitled 02", category: Category.PAINTING,  filename: "Untitled_12.webp" },
+    { title: "Untitled 03", category: Category.WARE,      filename: "Untitled_09.webp" },
+    { title: "Untitled 10", category: Category.WARE,      filename: "Untitled_06.webp" },
+    { title: "Untitled 11", category: Category.SCULPTURE, filename: "Untitled_10.webp" },
+    { title: "Untitled 12", category: Category.WARE,      filename: "Untitled_08.webp" },
+    { title: "Untitled 13", category: Category.PAINTING,  filename: "Untitled_01.webp" },
+    { title: "Untitled 14", category: Category.WARE,      filename: "Untitled_03.webp" },
+    { title: "Untitled 15", category: Category.SCULPTURE, filename: "Untitled_19.webp" },
+    { title: "Untitled 16", category: Category.WARE,      filename: "Untitled_04.webp" },
+    { title: "Untitled 17", category: Category.SCULPTURE, filename: "Untitled_16.webp" },
+    { title: "Untitled 18", category: Category.WARE,      filename: "Untitled_07.webp" },
+    { title: "Untitled 19", category: Category.SCULPTURE, filename: "Untitled_14.webp" },
+    { title: "Untitled 20", category: Category.PAINTING,  filename: "Untitled_11.webp" },
+    { title: "Untitled 21", category: Category.SCULPTURE, filename: "Untitled_18.webp" },
 ]
 
 // POPULATE IMAGE GALLERY
 const gallery = document.querySelector(".gallery");
 
-for (let img of images){
+images.forEach((img, i) => {
     const el = document.createElement("img");
-    el.classList = "gallery-item"
+    el.src = `assets/display/${img.filename}`;
     el.alt = img.category + " titled " + img.title;
     el.dataset.category = img.category;
-    el.src = "Images/" + img.filename;
+    el.classList.add('gallery-item');
+
+    // lazy loading all but the first 3 images
+    if (i > 3) el.loading = 'lazy';
+    // el.classList.add('magnet')
     gallery.appendChild(el);
-}
+})
 
 // SETUP IMAGE FILTERS
 const filters = document.querySelectorAll('.filter');
@@ -53,14 +57,9 @@ filters.forEach(filter => {
 
         // Update Gallery Images
         const category = filter.getAttribute('data-filter');
-        console.log(category)
 
         items.forEach(item => {
-            console.log(category)
-            console.log(item.getAttribute('data-category'))
-            console.log("IS WARE?: ", Category.WARE === "ware");
-
-            if (category === "all" || category == item.getAttribute('data-category')){
+            if (category === "all" || category === item.getAttribute('data-category')){
                 item.classList.remove('hide');
             } else {
                 item.classList.add('hide');
@@ -68,6 +67,4 @@ filters.forEach(filter => {
         })
     })
 })
-
-
 

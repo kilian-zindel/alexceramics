@@ -1,6 +1,30 @@
 <!DOCTYPE html>
-<html>
+
+<!-- 
+# README
+
+This site was created by Kilian Zindel. 
+
+A handcrafted website for an artist with handcrafted art. 
+No website builders and no AI slop were used in the creation of this site.
+Created by an iterative processes of learning, tweaking, experimenting. 
+
+If you are an atrist looking for a website please contact me. 
+
+Name:   Kilian Zindel 
+Phone:  (312) 489-7798 
+Email:  kilianzindel@proton.me
+
+I don't accept money I only accept art as payment. -->
+
+<html lang="en">
 <head>
+    <!-- Boilerplate -->
+    <meta charset="UTF-8">
+    <title>Alex K. Art</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+    <!-- My Code -->
     <link rel="stylesheet" href="style.css"> 
     <script src="script.js" defer></script>
 
@@ -13,16 +37,16 @@
     <!-- HEADER -->
     <header style="margin-top: 48px;">
         <div style="font-size: 2.75em; line-height: 1">Ceramics</div>
-        <div style="font-size: 1.25em; padding-left: 6px;">By Alex K.</div>
+        <div class="magnet" style="font-size: 1.25em; padding-left: 6px; width: max-content">By Alex K.</div>
     </header>
 
     <!-- IMAGE GALLERY -->
     <!-- filters -->
-    <div class="controls" style="margin-top: 32px; padding-left: 8px;">
-        <div class="filter active" data-filter="all">My Work:</div>
-        <div class="filter" data-filter="ware">Wares</div>
-        <div class="filter" data-filter="sculpture">Sculptures</div>
-        <div class="filter" data-filter="painting">Paintings</div>
+    <div class="controls" style="margin-top: 48px; padding-left: 8px;">
+        <button class="filter active magnet" data-filter="all" style="margin-bottom: 12px">Selected Works</button>
+        <button class="filter magnet" data-filter="ware">Wares</button>
+        <button class="filter magnet" data-filter="sculpture">Sculptures</button>
+        <button class="filter magnet" data-filter="painting">Paintings</button>
     </div>
 
     <!-- images -->
