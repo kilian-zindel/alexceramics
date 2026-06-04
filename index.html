@@ -1,22 +1,5 @@
 <!DOCTYPE html>
 
-<!-- 
-# README
-
-This site was created by Kilian Zindel. 
-
-A handcrafted website for an artist with handcrafted art. 
-No website builders and no AI slop were used in the creation of this site.
-Created by an iterative processes of learning, tweaking, experimenting. 
-
-If you are an atrist looking for a website please contact me. 
-
-Name:   Kilian Zindel 
-Phone:  (312) 489-7798 
-Email:  kilianzindel@proton.me
-
-I don't accept money I only accept art as payment. -->
-
 <html lang="en">
 <head>
     <!-- Boilerplate -->
@@ -25,31 +8,32 @@ I don't accept money I only accept art as payment. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
      
     <!-- My Code -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="style.css"> 
     <script src="script.js" defer></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Changa&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- HEADER -->
-    <header style="margin-top: 48px;">
-        <div style="font-size: 2.75em; line-height: 1">Ceramics</div>
-        <div class="magnet" style="font-size: 1.25em; padding-left: 6px; width: max-content">By Alex K.</div>
-    </header>
+    <div class="header">
+        <div class="page-heading">Ceramics</div>
+        <div class="page-subheading">By Alex K.</div>
+    </div>
 
     <!-- IMAGE GALLERY -->
     <!-- filters -->
     <div class="controls" style="margin-top: 48px; padding-left: 8px;">
-        <button class="filter active magnet" data-filter="all" style="margin-bottom: 12px">Selected Works</button>
-        <button class="filter magnet" data-filter="ware">Wares</button>
-        <button class="filter magnet" data-filter="sculpture">Sculptures</button>
-        <button class="filter magnet" data-filter="painting">Paintings</button>
+        <button class="filter active" data-filter="all" style="margin-bottom: 12px">Selected Works</button>
+        <button class="filter" data-filter="ware">Wares</button>
+        <button class="filter" data-filter="sculpture">Sculptures</button>
+        <button class="filter" data-filter="painting">Paintings</button>
     </div>
 
     <!-- images -->
-    <div class="gallery" style="margin-top: 32px;"></div>
+    <div class="images-container"></div>
 </body>
 </html>

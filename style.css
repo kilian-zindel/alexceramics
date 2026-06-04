@@ -3,34 +3,50 @@
 :root {
     --accent: #D06677;
 }
-
 body { 
+    margin: 0;
     background-color: white;
-    font-family: "Cantarell"; 
+    font-family: "Cantarell", sans-serif; 
 }
 button { 
     all: unset; 
     cursor: pointer; 
 }
 
+/* HEADER */
+.header {
+    margin-top: 48px; 
+    margin-left: 16px; 
+}
+.page-heading {
+    font-size: 2.75em; 
+    line-height: 1;
+    width: max-content;
+}
+.page-subheading {
+    font-size: 1.25em;
+    padding-left: 6px;
+    width: max-content;
+}
+
 /* IMAGE GALLERY */
-.gallery {
-    display: flex; 
-    flex-direction: column;
+.controls {
+    margin-left: 16px;
+}
+
+.images-container {
+    max-width: 1200px;
+    margin: 32px auto;
+    padding: 0px 8px;
     column-count: 3;
     column-gap: 8px;
-    align-content: center; 
-    flex-wrap: wrap;
-    /* max-height: 4000px; */
-    gap: 8px;
 }
 
 .gallery-item {
-    /* width: 100%; */
-    width: 400px;
-    /* max-width: 400px; */
-    height: auto; 
-    transition: transform 0.3s ease; 
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 8px;
 }
 
 .gallery-item.hide { 
@@ -46,8 +62,7 @@ button {
 .filter:hover {
     font-weight: 900; 
     letter-spacing: -1px;
-    color: #D06677;
-    cursor: pointer;
+    color: var(--accent);
 }
 
 .filter.active {
@@ -56,19 +71,9 @@ button {
     color: black;
 }
 
-@media only screen and (max-width: 600px) {
-    /* Styles for mobile */
-    .gallery {
-        /* display: flex; 
-        flex-direction: column;  */
-        flex-wrap: nowrap;
-        max-height: none;
-        /* gap: 8px; */
-    }
-    .gallery-item {
-        max-width: none;
-        width: 100%;
-        height: auto; 
-    }
+@media (max-width: 600px) {
+    .images-container { column-count: 1; }
+    .header { margin-left: 2px; }
+    .controls { margin-left: 2px; }
 }
 

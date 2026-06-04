@@ -29,18 +29,17 @@ const images = [
 ]
 
 // POPULATE IMAGE GALLERY
-const gallery = document.querySelector(".gallery");
+const gallery = document.querySelector(".images-container");
 
 images.forEach((img, i) => {
     const el = document.createElement("img");
     el.src = `assets/display/${img.filename}`;
-    el.alt = img.category + " titled " + img.title;
+    el.alt = `${img.category} titled ${img.title}`;
     el.dataset.category = img.category;
     el.classList.add('gallery-item');
 
     // lazy loading all but the first 3 images
     if (i > 3) el.loading = 'lazy';
-    // el.classList.add('magnet')
     gallery.appendChild(el);
 })
 
