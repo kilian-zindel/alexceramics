@@ -28,15 +28,46 @@ const images = [
     { title: "Untitled 21", category: Category.SCULPTURE, filename: "Untitled_Artwork (5).jpg" },
 ]
 
-const gallery = document.getElementById("gallery");
+// POPULATE IMAGE GALLERY
+const gallery = document.querySelector(".gallery");
 
 for (let img of images){
-    
     const el = document.createElement("img");
-    // el.style = "width: 100%; max-width: 600px; height: auto;"
     el.classList = "gallery-item"
     el.alt = img.category + " titled " + img.title;
     el.dataset.category = img.category;
     el.src = "Images/" + img.filename;
     gallery.appendChild(el);
 }
+
+// SETUP IMAGE FILTERS
+const filters = document.querySelectorAll('.filter');
+const items = document.querySelectorAll('.gallery-item');
+
+filters.forEach(filter => {
+    filter.addEventListener('click', () => {
+
+        // Update Class List: move 'active' to new filter btn 
+        document.querySelector('.filter.active').classList.remove('active');
+        filter.classList.add('active');
+
+        // Update Gallery Images
+        const category = filter.getAttribute('data-filter');
+        console.log(category)
+
+        items.forEach(item => {
+            console.log(category)
+            console.log(item.getAttribute('data-category'))
+            console.log("IS WARE?: ", Category.WARE === "ware");
+
+            if (category === "all" || category == item.getAttribute('data-category')){
+                item.classList.remove('hide');
+            } else {
+                item.classList.add('hide');
+            }
+        })
+    })
+})
+
+
+

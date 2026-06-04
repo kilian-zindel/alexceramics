@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
     <script src="script.js" defer></script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Changa&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- HEADER -->
     <header style="margin-top: 48px;">
         <div style="font-size: 2.75em; line-height: 1">Ceramics</div>
         <div style="font-size: 1.25em; padding-left: 6px;">By Alex K.</div>
     </header>
 
-    <div style="margin-top: 32px; padding-left: 8px;">
-        <div class="filter">Wares</div>
-        <div class="filter">Sculptures</div>
-        <div class="filter">Paintings</div>
+    <!-- IMAGE GALLERY -->
+    <!-- filters -->
+    <div class="controls" style="margin-top: 32px; padding-left: 8px;">
+        <div class="filter active" data-filter="all">My Work:</div>
+        <div class="filter" data-filter="ware">Wares</div>
+        <div class="filter" data-filter="sculpture">Sculptures</div>
+        <div class="filter" data-filter="painting">Paintings</div>
     </div>
 
-    <div id="gallery" class="gallery" style="margin-top: 32px;"></div>
-
+    <!-- images -->
+    <div class="gallery" style="margin-top: 32px;"></div>
 </body>
 </html>

@@ -17,6 +17,24 @@ body {
     width: 400px;
     /* max-width: 400px; */
     height: auto; 
+    transition: transform 0.3s ease; 
+}
+
+.gallery-item.hide { 
+    display: none; 
+}
+
+.filter:hover {
+    font-weight: 900; 
+    letter-spacing: -1px;
+    color: #D06677;
+    cursor: pointer;
+}
+
+.filter.active {
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: black;
 }
 
 @media only screen and (max-width: 600px) {
