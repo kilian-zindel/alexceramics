@@ -3,7 +3,7 @@
 Portfolio site for a ceramics artist, built to showcase the work rather than the framework — humble, functional, fast.
 
 **Stack:** Vanilla HTML/CSS/JS, no build step, no dependencies. Python + Pillow for image preprocessing (see [`tools/`](tools/)).
-**Hosting:** Netlify, custom domain (`alexceramics.nyc`).
+**Hosting:** Netlify, custom domain (`alexceramics.art`).
 
 ## What it does
 
@@ -19,4 +19,7 @@ Portfolio site for a ceramics artist, built to showcase the work rather than the
 
 ## Status
 
-The "About" section content is placeholder — pending final bio and photo selections from the artist.
+- [x] Optimize images for web and faster loading
+- [x] Home Page
+- [x] Gallery w Filters and Categories
+- [x] About Page 
