@@ -72,9 +72,23 @@ h1 {
     gap: 48px;
 }
 
-.about-intro p {
+.about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     max-width: 600px;
+}
+
+.about-text p {
     line-height: 1.6;
+}
+
+.about-text .contact a {
+    color: black;
+}
+
+.about-text .contact a:hover {
+    color: var(--accent);
 }
 
 .profile-photo {
