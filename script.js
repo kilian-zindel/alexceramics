@@ -4,8 +4,6 @@ const Category = Object.freeze({
     PAINTING: "painting",
 }) 
 
-
-
 const images = [
     { title: "Untitled 07", category: Category.WARE,      filename: "Untitled_05.webp" },
     { title: "Untitled 08", category: Category.PAINTING,  filename: "Untitled_02.webp" },
