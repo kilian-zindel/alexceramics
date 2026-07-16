@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <!-- Boilerplate -->
@@ -7,6 +6,15 @@
     <title>Alex K. Art</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
      
+    <!-- meta description & open graph tags -->
+    <meta name="description" content="Alex K's Personal Work, a Ceramics Artist. This is a portfolio of her wares, sculptures, and paintings">
+    <meta property="og:title" content="Alex K. Ceramics">
+    <meta property="og:description" content="Handmade ceramic sculptures, wares, and paintings by Alex K.">
+    <!-- TODO: update URLs  -->
+    <!-- <meta property="og:image" content="https://alexceramics.nyc/assets/display/Untitled_01.webp">
+    <meta property="og:url" content="https://alexceramics.nyc"> -->
+    <!-- TODO check preview using Facebook Sharing Debugger: https://developers.facebook.com/tools/debug/ -->
+
     <!-- My Code -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="style.css"> 
@@ -18,22 +26,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <!-- HEADER -->
-    <div class="header">
-        <div class="page-heading">Ceramics</div>
-        <div class="page-subheading">By Alex K.</div>
-    </div>
+    <header>
+        <h1>Alex K. Ceramics</h1>
+
+        <nav aria-label="Main Navigation">
+            <!-- Main site links -->
+            <div class="nav-links">
+                <button class="nav-btn active" data-target="work" data-text="My Work">My Work</button>
+                <button class="nav-btn" data-target="about" data-text="About Me">About Me</button>
+            </div>
+
+            <!-- Social link -->
+            <a href="https://www.instagram.com/ceramics.alex"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Alex's Instagram">  
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+            </a>
+        </nav>
+    </header>
+
+    <section class="about hide">
+        <div class="about-intro">
+            <img class="profile-photo" src="assets/alex.jpg" alt="Portrait of ceramic artist Alex K.">
+            <p>Alex is a ceramic artist based in New York. She makes wares, sculpture, and glaze paintings. She comes to glaze from a background in painting, and her process is built around testing combinations, layering color, and placing crystals to create imagery. Glaze is unpredictable, and much of her work is about learning to anticipate it. She taught ceramics for a year, including starting a program at a school on Chicago's South Side, before returning her focus to her own studio practice. She begins her MFA in Studio Art at Brooklyn College this fall.</p>
+        </div>
+
+        <div class="about-gallery">
+            <figure>
+                <img src="assets/display/Untitled_05.webp" alt="Handmade ceramic ware piece by Alex K.">
+                <figcaption>One of Alex's wares.</figcaption>
+            </figure>
+            <figure>
+                <img src="assets/display/Untitled_20.webp" alt="Ceramic fountain sculpture made for a graduate school application">
+                <figcaption>One of Alex's fountains.</figcaption>
+            </figure>
+            <figure>
+                <img src="assets/park.jpg" alt="Alex selling her ceramics in Central Park">
+                <figcaption>Alex selling her work in Central Park.</figcaption>
+            </figure>
+        </div>
+    </section>
 
     <!-- IMAGE GALLERY -->
-    <!-- filters -->
-    <div class="controls" style="margin-top: 48px; padding-left: 8px;">
-        <button class="filter active" data-filter="all" style="margin-bottom: 12px">Selected Works</button>
-        <button class="filter" data-filter="ware">Wares</button>
-        <button class="filter" data-filter="sculpture">Sculptures</button>
-        <button class="filter" data-filter="painting">Paintings</button>
-    </div>
+    <section class="work">
+        <div class="controls">
+            <button class="filter active" data-filter="all" data-text="All">All</button>
+            <button class="filter" data-filter="sculpture" data-text="Sculptures">Sculptures</button>
+            <button class="filter" data-filter="ware" data-text="Wares">Wares</button>
+            <button class="filter" data-filter="painting" data-text="Paintings">Paintings</button>
+        </div>
 
-    <!-- images -->
-    <div class="images-container"></div>
+        <div class="images-container"></div>
+    </section>
 </body>
 </html>

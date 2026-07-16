@@ -4,7 +4,7 @@ from PIL import Image
 
 # Configuration
 SOURCE_DIR = "../Images"
-OUTPUT_DIR = "../assets"
+OUTPUT_DIR = "../../assets"
 MAP_FILE = "image_map.json"
 QUALITY_STANDARD = 75
 QUALITY_HERO = 85  # Higher quality for zooming in on fine-grained details

@@ -4,6 +4,8 @@ const Category = Object.freeze({
     PAINTING: "painting",
 }) 
 
+
+
 const images = [
     { title: "Untitled 07", category: Category.WARE,      filename: "Untitled_05.webp" },
     { title: "Untitled 08", category: Category.PAINTING,  filename: "Untitled_02.webp" },
@@ -11,7 +13,7 @@ const images = [
     { title: "Untitled 04", category: Category.SCULPTURE, filename: "Untitled_13.webp" },
     { title: "Untitled 05", category: Category.SCULPTURE, filename: "Untitled_15.webp" },
     { title: "Untitled 06", category: Category.WARE,      filename: "Untitled_03.webp" },
-    { title: "Untitled 01", category: Category.SCULPTURE, filename: "Untitled_20.webp" },
+    { title: "Untitled 15", category: Category.SCULPTURE, filename: "Untitled_19.webp" },
     { title: "Untitled 02", category: Category.PAINTING,  filename: "Untitled_12.webp" },
     { title: "Untitled 03", category: Category.WARE,      filename: "Untitled_09.webp" },
     { title: "Untitled 10", category: Category.WARE,      filename: "Untitled_06.webp" },
@@ -19,7 +21,7 @@ const images = [
     { title: "Untitled 12", category: Category.WARE,      filename: "Untitled_08.webp" },
     { title: "Untitled 13", category: Category.PAINTING,  filename: "Untitled_01.webp" },
     { title: "Untitled 14", category: Category.WARE,      filename: "Untitled_03.webp" },
-    { title: "Untitled 15", category: Category.SCULPTURE, filename: "Untitled_19.webp" },
+    { title: "Untitled 01", category: Category.SCULPTURE, filename: "Untitled_20.webp" },
     { title: "Untitled 16", category: Category.WARE,      filename: "Untitled_04.webp" },
     { title: "Untitled 17", category: Category.SCULPTURE, filename: "Untitled_16.webp" },
     { title: "Untitled 18", category: Category.WARE,      filename: "Untitled_07.webp" },
@@ -27,6 +29,29 @@ const images = [
     { title: "Untitled 20", category: Category.PAINTING,  filename: "Untitled_11.webp" },
     { title: "Untitled 21", category: Category.SCULPTURE, filename: "Untitled_18.webp" },
 ]
+
+// SETUP PAGES
+const navBtns = document.querySelectorAll('.nav-btn')
+
+navBtns.forEach((btn, i) => {
+    const target = btn.getAttribute('data-target')
+
+    btn.addEventListener('click', (e) => {
+
+        // change the active navbtn
+        document.querySelector('.nav-btn.active').classList.remove('active');
+        e.target.classList.add('active');
+        
+        const target = e.target.getAttribute('data-target');
+
+        const pageSections = document.querySelectorAll('section');
+        pageSections.forEach((s) => {
+            s.classList.add("hide");
+        })
+        
+        document.getElementsByClassName(target)[0].classList.remove("hide")
+    })
+})
 
 // POPULATE IMAGE GALLERY
 const gallery = document.querySelector(".images-container");
