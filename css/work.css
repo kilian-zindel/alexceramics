@@ -5,6 +5,12 @@
     gap: 0px;
 }
 
+.intro {
+    margin: 0 8px 24px 8px;
+    max-width: 620px;
+    font-size: 18px;
+}
+
 .controls {
     margin: 24px 8px;
     font-size: 18px;
@@ -35,6 +41,11 @@
 
 @media (max-width: 750px) {
     .work.page { margin: 0px 8px; }
+
+    .intro {
+        margin: 0 0 16px 6px;
+        font-size: 17px;
+    }
 
     .images-container { column-count: 1; }
 
