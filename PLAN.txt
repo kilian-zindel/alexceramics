@@ -19,6 +19,9 @@ SITE STRUCTURE
 
   The header is copied into all 4 pages. If you change it, change all 4.
   Local dev: python3 -m http.server 8080  ->  http://127.0.0.1:8080
+    (the store shows placeholder items from js/sample-products.json locally)
+  Tests:     node --test tests/*.test.mjs
+  drafts/, tests/, tools/ and PLAN.txt are blocked from the live site (netlify.toml)
 
 
 STORE: HOW IT WORKS
@@ -31,6 +34,7 @@ STORE: HOW IT WORKS
          - Collect shipping address (US only) + add the flat shipping rate
          - After payment: redirect to https://alexceramics.art/store.html?purchased=1
     3. Done. The item shows up on the site within ~5 minutes.
+       Optional: product metadata "order" = 1, 2, 3... to control the order on the page.
   When it sells, Stripe turns the link off automatically and the site shows it as "Sold".
   To take an item down without selling it: deactivate its Payment Link.
 
@@ -91,7 +95,7 @@ PHASES
     4 real pages, per-page CSS/JS, bug fixes, real workshop photos,
     filter fix (.hide was losing to .gallery-item), new convert_images.py
 
-  PHASE 2: running at the same time (each agent in its own git worktree, own files only)
+  PHASE 2: DONE (branch workshops-and-store)
     2a. Workshops agent: workshops.html, css/workshops.css, drafts/workshops-page-copy.md
     2b. Store agent: store.html, css/store.css, js/store.js, netlify/, netlify.toml
     2c. Claude: drafts/venue-outreach-email.md
