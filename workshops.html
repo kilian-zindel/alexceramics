@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- meta description & open graph tags -->
-    <meta name="description" content="Ceramic painting workshops with Alex K. at cafes and wine bars in New York. No experience needed: grab a drink, paint a handmade piece, pick it up fired two weeks later.">
+    <meta name="description" content="Ceramic painting workshops with Alex K. at cafes and wine bars in New York. 90 minutes, everything provided, no experience needed. Paint a handmade bowl, vase or dish and pick it up fired two weeks later.">
     <meta property="og:title" content="Ceramic Painting Workshops with Alex K.">
-    <meta property="og:description" content="Grab a drink, paint a handmade piece, take it home fired. No experience needed.">
-    <meta property="og:image" content="https://alexceramics.art/assets/workshops/painted-pieces.webp">
+    <meta property="og:description" content="Grab a drink, paint a handmade piece, pick it up fired two weeks later. No experience needed. Cafes and wine bars in New York.">
+    <meta property="og:image" content="https://alexceramics.art/assets/workshops/teaching.webp">
     <meta property="og:url" content="https://alexceramics.art/workshops">
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -50,31 +50,127 @@
     </header>
 
     <!-- WORKSHOPS
-         Facts: hosted at cafes / wine bars, 90 minutes, 2 drink minimum at the venue,
-         pieces are fired and ready for pickup at the same venue ~2 weeks later.
-         Full page build-out is Phase 2 in PLAN.txt. -->
+         The wording lives in drafts/workshops-page-copy.md. Edit it there first.
+         Before launch: search this file for "TODO(owner)". -->
     <main class="workshops page">
-        <div class="workshops-overview">
-            <img class="workshops-hero" src="assets/workshops/teaching.webp" alt="Alex leading a ceramic painting workshop for a group seated at tables">
-            <div class="workshops-text">
-                <h2>Ceramic Painting Workshops</h2>
-                <p>Come hang out with us at a cafe or wine bar, sip a drink, and paint some ceramics! I make every piece by hand. You just bring yourself, some good vibes, and optionally some friends :)</p>
-                <p>After the workshop I'll take your piece to get fired, and you can pick it up at the same venue two weeks later.</p>
-                <!-- TODO(owner): replace href with the real Luma calendar/event URL -->
-                <p>For upcoming workshops, check <a class="text-link" href="#">Luma</a> or email <a class="text-link" href="mailto:alexkoe2001@gmail.com">alexkoe2001@gmail.com</a>.</p>
-            </div>
-        </div>
 
-        <section class="workshops-gallery-section">
-            <h2>From past workshops</h2>
+        <!-- INTRO -->
+        <section class="workshops-intro" aria-labelledby="workshops-title">
+            <img class="workshops-hero" src="assets/workshops/teaching.webp" alt="Alex standing at the front of a cafe, talking to a group of guests seated at workshop tables">
+            <div class="workshops-text">
+                <h2 id="workshops-title">Ceramic Painting Workshops</h2>
+                <p>Come hang out with us at a cafe or wine bar, sip a drink, and paint some ceramics! I make every piece by hand, and you get to paint one: a bowl, a vase, or a small dish.</p>
+                <p>Everything is provided and no experience is needed. You just bring yourself, some good vibes, and optionally some friends :)</p>
+                <!-- TODO(owner): Luma event URL -->
+                <a class="book-btn" href="#">Book a spot</a>
+            </div>
+        </section>
+
+        <!-- QUICK FACTS -->
+        <section aria-label="Quick facts">
+            <ul class="quick-facts">
+                <li>90 minutes</li>
+                <!-- TODO(owner): price -->
+                <li>$XX per person</li>
+                <li>All materials included</li>
+                <li>2-drink minimum at the venue</li>
+                <li>Pick it up fired in about 2 weeks</li>
+            </ul>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="workshops-section" aria-labelledby="how-title">
+            <h2 id="how-title">How it works</h2>
+            <ol class="steps">
+                <li>
+                    <h3>Grab a drink and pick a piece</h3>
+                    <p>Order something from the venue (there's a 2-drink minimum) and choose a bowl, vase or small dish I made.</p>
+                </li>
+                <li>
+                    <h3>Paint</h3>
+                    <p>Paint it however you like. Everything you need is on the table.</p>
+                </li>
+                <li>
+                    <h3>Pick it up, fired</h3>
+                    <p>After the workshop I take your piece to be fired. It's ready to pick up at the same venue about two weeks later.</p>
+                </li>
+            </ol>
+        </section>
+
+        <!-- GALLERY
+             To add a photo: drop a WebP into assets/workshops/ and add one <img> line below.
+             Keep people shots first, finished pieces after. Always write an alt text. -->
+        <section class="workshops-section" aria-labelledby="gallery-title">
+            <h2 id="gallery-title">From past workshops</h2>
             <div class="workshops-gallery">
-                <img src="assets/workshops/painted-pieces.webp" alt="A table of freshly painted bowls and vases in soft pastel colors" loading="lazy">
-                <img src="assets/workshops/strawberry-bowl.webp" alt="A bowl painted with small pink strawberries" loading="lazy">
-                <img src="assets/workshops/tulip-bowl.webp" alt="A finished glazed bowl painted with two red tulips" loading="lazy">
                 <img src="assets/workshops/painting-closeup.webp" alt="A guest painting blue stripes onto a small vase" loading="lazy">
-                <img src="assets/workshops/palette.webp" alt="A paint palette, brushes, and a drink on the workshop table" loading="lazy">
+                <img src="assets/workshops/palette.webp" alt="A guest rinsing a brush beside a paint palette and a drink on the workshop table" loading="lazy">
+                <img src="assets/workshops/painted-pieces.webp" alt="A table of freshly painted bowls and vases in soft pastel colors" loading="lazy">
+                <img src="assets/workshops/strawberry-bowl.webp" alt="A hand holding a bowl painted with small pink strawberries" loading="lazy">
+                <img src="assets/workshops/tulip-bowl.webp" alt="A finished glazed bowl painted with two red tulips" loading="lazy">
                 <img src="assets/workshops/glazed-bowls.webp" alt="Two finished glazed bowls, one with tulips and one with blue flowers" loading="lazy">
             </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="workshops-section" aria-labelledby="faq-title">
+            <h2 id="faq-title">Questions</h2>
+            <div class="faq">
+                <details>
+                    <summary>Do I need any experience?</summary>
+                    <p>Nope, none at all! Everything is provided.</p>
+                </details>
+                <details>
+                    <summary>Can I come by myself?</summary>
+                    <p>Yes! Come solo or bring your friends. Either way works.</p>
+                </details>
+                <details>
+                    <summary>What do I paint?</summary>
+                    <!-- TODO(owner): how do guests choose their piece (on the day / when booking)? -->
+                    <p>A piece I made by hand: bowls, vases and small dishes.</p>
+                </details>
+                <details>
+                    <summary>When do I get my piece?</summary>
+                    <p>After the workshop I take everything to be fired. You pick yours up at the same venue about two weeks later.</p>
+                </details>
+                <details>
+                    <summary>Can I get a refund if I can't make it?</summary>
+                    <!-- TODO(owner): refund policy -->
+                    <p>Email me at <a class="text-link" href="mailto:alexkoe2001@gmail.com">alexkoe2001@gmail.com</a> and I'll get back to you.</p>
+                </details>
+                <details>
+                    <summary>Is there an age limit?</summary>
+                    <!-- TODO(owner): age limit -->
+                    <p>Email me at <a class="text-link" href="mailto:alexkoe2001@gmail.com">alexkoe2001@gmail.com</a> and I'll get back to you.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- PRIVATE EVENTS -->
+        <section class="workshops-section narrow" aria-labelledby="private-title">
+            <h2 id="private-title">Private events</h2>
+            <p>Planning a birthday, a bachelorette or a team event? You can book a workshop just for your group. Email me at <a class="text-link" href="mailto:alexkoe2001@gmail.com">alexkoe2001@gmail.com</a> and we'll find a date.</p>
+        </section>
+
+        <!-- TODO(owner): guest quotes. Uncomment once you have 3-5 real quotes
+             (first name + their OK to use). Styles are already in css/workshops.css.
+        <section class="workshops-section" aria-labelledby="quotes-title">
+            <h2 id="quotes-title">What people say</h2>
+            <div class="quotes">
+                <figure>
+                    <blockquote><p>Quote goes here.</p></blockquote>
+                    <figcaption>First name</figcaption>
+                </figure>
+            </div>
+        </section>
+        -->
+
+        <!-- CLOSING -->
+        <section class="workshops-closing" aria-labelledby="closing-title">
+            <h2 id="closing-title">Ready to paint?</h2>
+            <!-- TODO(owner): Luma event URL -->
+            <a class="book-btn" href="#">Book a spot</a>
+            <p>Questions? Email me at <a class="text-link" href="mailto:alexkoe2001@gmail.com">alexkoe2001@gmail.com</a>.</p>
         </section>
     </main>
 
