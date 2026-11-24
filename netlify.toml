@@ -1,0 +1,10 @@
+# Static site, no build step. Netlify publishes the repo root as-is.
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Product photos uploaded in the Stripe Dashboard are served from files.stripe.com.
+# Allowlisting it lets store.html use /.netlify/images?url=... to resize them.
+# https://docs.netlify.com/build/image-cdn/overview/
+[images]
+  remote_images = ['https://files\.stripe\.com/.*']

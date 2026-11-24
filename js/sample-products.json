@@ -1,0 +1,57 @@
+[
+    {
+        "id": "plink_sample_1",
+        "title": "Sample Bowl (placeholder)",
+        "description": "Placeholder item for local development. The real store reads products from Stripe.",
+        "price": 45,
+        "currency": "usd",
+        "image": "assets/display/Untitled_05.webp",
+        "url": "https://buy.stripe.com/test_placeholder",
+        "sold": false,
+        "created": 1764000000
+    },
+    {
+        "id": "plink_sample_2",
+        "title": "Sample Vase (placeholder)",
+        "description": "Glazed stoneware, about 7 in tall. Placeholder text.",
+        "price": 80,
+        "currency": "usd",
+        "image": "assets/display/Untitled_09.webp",
+        "url": "https://buy.stripe.com/test_placeholder",
+        "sold": false,
+        "created": 1763900000
+    },
+    {
+        "id": "plink_sample_3",
+        "title": "Sample Cup (placeholder)",
+        "description": "Hand-built cup with layered glaze. Placeholder text.",
+        "price": 32.5,
+        "currency": "usd",
+        "image": "assets/display/Untitled_06.webp",
+        "url": "https://buy.stripe.com/test_placeholder",
+        "sold": false,
+        "created": 1763800000
+    },
+    {
+        "id": "plink_sample_4",
+        "title": "Sample Dish (placeholder)",
+        "description": "Small serving dish. Placeholder text.",
+        "price": 38,
+        "currency": "usd",
+        "image": "assets/display/Untitled_08.webp",
+        "url": "https://buy.stripe.com/test_placeholder",
+        "sold": false,
+        "created": 1763700000
+    },
+    {
+        "id": "plink_sample_5",
+        "title": "Sample Plate (placeholder, sold)",
+        "description": "Shows how a sold piece looks. Placeholder text.",
+        "price": 55,
+        "currency": "usd",
+        "image": "assets/display/Untitled_03.webp",
+        "url": null,
+        "sold": true,
+        "created": 1763600000
+    }
+]
