@@ -8,3 +8,28 @@
 # https://docs.netlify.com/build/image-cdn/overview/
 [images]
   remote_images = ['https://files\.stripe\.com/.*']
+
+# Repo-only files: don't serve these on the live site.
+[[redirects]]
+  from = "/drafts/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/tests/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/tools/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/PLAN.txt"
+  to = "/404"
+  status = 404
+  force = true
