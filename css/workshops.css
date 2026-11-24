@@ -1,6 +1,8 @@
 /* WORKSHOPS PAGE */
 
-.workshops-overview {
+/* INTRO: photo + text side by side (same pattern as the About page) */
+
+.workshops-intro {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -8,28 +10,111 @@
 }
 
 .workshops-hero {
-    width: 320px;
+    width: 380px;
     flex-shrink: 0;
     aspect-ratio: 4 / 5;
     object-fit: cover;
+    display: block;
 }
 
 .workshops-text {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 16px;
-    max-width: 600px;
+    max-width: 560px;
 }
 
 .workshops-text p {
     margin: 0;
 }
 
-.workshops-gallery-section {
+/* "Book a spot": plain black outline, square corners, accent on hover */
+
+.book-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 12px 28px;
+    border: 1px solid black;
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    letter-spacing: 0.4px;
+}
+.book-btn:hover,
+.book-btn:focus-visible {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* QUICK FACTS: one row between two hairlines */
+
+.quick-facts {
+    list-style: none;
+    margin: 0;
+    padding: 20px 0;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+    font-size: 17px;
+}
+
+/* SHARED SECTION LAYOUT: heading + content */
+
+.workshops-section {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
+
+.workshops-section p {
+    margin: 0;
+}
+
+.narrow {
+    max-width: 640px;
+}
+
+/* HOW IT WORKS: 3 numbered steps */
+
+.steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    counter-reset: step;
+}
+
+.steps li {
+    counter-increment: step;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.steps li::before {
+    content: counter(step);
+    font-size: 2.75em;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.steps h3 {
+    margin: 8px 0 0 0;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.steps p {
+    color: var(--text-muted);
+}
+
+/* GALLERY: add an <img> and it joins the grid */
 
 .workshops-gallery {
     display: grid;
@@ -44,8 +129,90 @@
     display: block;
 }
 
+/* FAQ: native <details>, a hairline between questions */
+
+.faq {
+    max-width: 760px;
+    border-top: 1px solid black;
+}
+
+.faq details {
+    border-bottom: 1px solid black;
+}
+
+.faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 40px 18px 0;
+    position: relative;
+    font-size: 18px;
+}
+.faq summary::-webkit-details-marker {
+    display: none;
+}
+.faq summary::after {
+    content: "+";
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    line-height: 1;
+}
+.faq details[open] summary::after {
+    content: "\2212";
+}
+.faq summary:hover {
+    color: var(--accent);
+}
+
+.faq details p {
+    margin: 0;
+    padding: 0 40px 20px 0;
+    color: var(--text-muted);
+}
+
+/* QUOTES (for later, see the commented-out section in workshops.html) */
+
+.quotes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+}
+
+.quotes figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quotes blockquote {
+    margin: 0;
+    font-size: 18px;
+}
+
+.quotes figcaption {
+    color: var(--text-muted);
+}
+
+/* CLOSING */
+
+.workshops-closing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    padding: 32px 0 16px 0;
+}
+
+.workshops-closing p {
+    margin: 8px 0 0 0;
+}
+
 @media (max-width: 750px) {
-    .workshops-overview {
+    .workshops-intro {
         flex-direction: column;
         align-items: flex-start;
         gap: 24px;
@@ -53,7 +220,28 @@
     .workshops-hero {
         width: 100%;
     }
+
+    .quick-facts {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 16px 0;
+    }
+
+    .steps,
+    .quotes {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .steps li::before {
+        font-size: 2.25em;
+    }
+
     .workshops-gallery {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .faq summary {
+        font-size: 17px;
     }
 }
