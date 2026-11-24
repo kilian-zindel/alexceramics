@@ -135,6 +135,34 @@
     display: block;
 }
 
+/* WHO'S TEACHING: small portrait + short bio */
+
+.teacher {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+    max-width: 760px;
+}
+
+.teacher-photo {
+    width: 200px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    flex-shrink: 0;
+    display: block;
+}
+
+.teacher-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.teacher-text p {
+    margin: 0;
+}
+
 /* FAQ: native <details>, a hairline between questions */
 
 .faq {
@@ -232,6 +260,15 @@
         width: 100%;
         aspect-ratio: 4 / 3;
         object-position: 50% 30%; /* keep Alex + guests' heads in frame */
+    }
+
+    .teacher {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+    .teacher-photo {
+        width: 160px;
     }
 
     .quick-facts {

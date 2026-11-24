@@ -8,7 +8,7 @@ Portfolio site for a ceramics artist, built to showcase the work rather than the
 ## What it does
 
 - Category-filterable image gallery (All / Sculptures / Wares / Paintings), built with plain data attributes and DOM APIs
-- Separate pages for Work, Workshops, Store, and About, with a shared stylesheet (`css/base.css`) plus one stylesheet per page
+- Separate pages for Work, Workshops, and Store, with a shared stylesheet (`css/base.css`) plus one stylesheet per page
 - Mobile-first responsive layout
 - Images lazy-load below the fold (`loading="lazy"`) and are served pre-optimized as WebP at three sizes; see [`tools/README.md`](tools/README.md) for the preprocessing pipeline that generates them
 
