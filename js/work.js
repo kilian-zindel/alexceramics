@@ -28,29 +28,6 @@ const images = [
     { title: "Untitled 21", category: Category.SCULPTURE, filename: "Untitled_18.webp" },
 ]
 
-// SETUP PAGES
-const navBtns = document.querySelectorAll('.nav-btn')
-
-navBtns.forEach((btn, i) => {
-    const target = btn.getAttribute('data-target')
-
-    btn.addEventListener('click', (e) => {
-
-        // change the active navbtn
-        document.querySelector('.nav-btn.active').classList.remove('active');
-        e.target.classList.add('active');
-        
-        const target = e.target.getAttribute('data-target');
-
-        const pageSections = document.querySelectorAll('section');
-        pageSections.forEach((s) => {
-            s.classList.add("hide");
-        })
-        
-        document.getElementsByClassName(target)[0].classList.remove("hide")
-    })
-})
-
 // POPULATE IMAGE GALLERY
 const gallery = document.querySelector(".images-container");
 

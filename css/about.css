@@ -1,0 +1,58 @@
+/* ABOUT PAGE */
+
+.about-intro {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+}
+
+.about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 600px;
+}
+
+.profile-photo {
+    width: 240px;
+    flex-shrink: 0;
+}
+
+.about-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.about-gallery figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.about-gallery img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+}
+
+.about-gallery figcaption {
+    text-align: center;
+    color: var(--text-muted);
+}
+
+@media (max-width: 750px) {
+    .about-intro {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+    .about-gallery {
+        grid-template-columns: 1fr;
+    }
+    .about-gallery img {
+        height: auto;
+    }
+}

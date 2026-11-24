@@ -1,0 +1,144 @@
+ALEX K. CERAMICS: WORKSHOPS + STORE PLAN
+Last updated: 2026-11-24
+
+GOAL
+  1. Workshops page that gets people to book a $20-40 ceramic painting workshop.
+  2. Store page managed entirely from the Stripe dashboard.
+  Keep the current look: white, Cantarell, lots of space, photos doing the talking.
+
+
+SITE STRUCTURE
+  index.html      My Work (filterable gallery)   css/work.css       js/work.js
+  workshops.html  Workshops                      css/workshops.css
+  store.html      Store                          css/store.css      js/store.js
+  about.html      About                          css/about.css
+  css/base.css    shared: header, nav, type, footer. Change rarely.
+  netlify/functions/products.mjs   reads the store's items from Stripe (Phase 2)
+  drafts/         copy drafts (venue outreach email, workshop page text)
+  tools/scripts/convert_images.py  photo -> named WebP (fixes phone rotation)
+
+  The header is copied into all 4 pages. If you change it, change all 4.
+  Local dev: python3 -m http.server 8080  ->  http://127.0.0.1:8080
+
+
+STORE: HOW IT WORKS
+  Stripe is the "admin panel". The site reads the items from Stripe.
+
+  Adding an item (Kilian, ~5 min each, Stripe Dashboard):
+    1. Product catalog -> Add product: name, description, photo, one-time price
+    2. Create a Payment Link for it:
+         - Limit the number of payments: 1   (one-of-a-kind piece)
+         - Collect shipping address (US only) + add the flat shipping rate
+         - After payment: redirect to https://alexceramics.art/store.html?purchased=1
+    3. Done. The item shows up on the site within ~5 minutes.
+  When it sells, Stripe turns the link off automatically and the site shows it as "Sold".
+  To take an item down without selling it: deactivate its Payment Link.
+
+  Under the hood:
+    A Netlify Function (/api/products) uses a read-only Stripe key to list the
+    Payment Links and their products, and returns JSON to store.html. Results are
+    cached for 5 minutes. The secret key never reaches the browser.
+    Photos come from Stripe, resized via Netlify's image CDN.
+    No monthly cost. Netlify's free tier covers far more traffic than we'll get.
+
+  Fees: Stripe takes 2.9% + 30c per card sale (~$1.60 on a $45 bowl).
+
+  LATER: shopping cart
+    Payment Links = one item per checkout. When people want several pieces at once:
+    a cart on the site (saved in the browser) + a second Netlify Function that
+    opens one Stripe Checkout for everything in it. Same Stripe products, about half a day.
+
+
+SHIPPING (US only to start; no local pickup, since coordinating it isn't worth it yet)
+  The flow when something sells:
+    1. Stripe emails you "Payment received" (the Stripe phone app pings too)
+    2. Stripe Dashboard -> Payments -> open it -> buyer's shipping address
+    3. Pack it: wrap the piece in bubble wrap, put it in a box with ~2in of padding,
+       then put that box inside a bigger box (double-boxing; ceramics need it)
+    4. Buy a label on Pirate Ship (free account, discounted USPS/UPS rates)
+       -> print at home on plain paper, or at a FedEx/UPS store
+    5. Drop at the post office, or book a free USPS pickup from home
+    6. Send the buyer the tracking number (Pirate Ship can email it for you)
+
+  Costs per order (estimates, check Pirate Ship's calculator with a real box):
+    Label    ~$8-15  for a 2-4 lb box, USPS Ground Advantage, depends on distance
+    Packing  ~$3-6   boxes + bubble wrap (cheaper bought in bulk)
+  What to charge: Stripe Payment Links only allow FIXED shipping prices (no
+    live carrier rates). Start with a flat $12 US shipping fee. If big pieces cost
+    more to ship, make a second "$18 large item" rate and use it on those links.
+
+
+WORKSHOPS
+  Tickets: Luma (free plan: 5% + card fee, ~$1.88 on a $20 ticket).
+    Link out to the Luma event page. Don't embed its checkout, because Apple Pay
+    doesn't work inside Luma's embeds.
+    No Luma calendar embed in v1. Add it once the first venue is set.
+
+  What makes people book (the page answers these):
+    1. What is it? -> photos of real people at a table with drinks + finished pieces
+    2. Can I do this? -> no experience needed, everything provided
+    3. Quick facts: 90 min / $XX / drinks at the venue (2-drink min) /
+       you keep your piece, fired and ready to pick up in ~2 weeks
+    4. One obvious "Book" button near the top and again at the bottom
+    5. FAQ: bring friends? solo OK? what do I paint? pickup? refunds?
+    6. Private events (birthdays, bachelorettes, teams): "email to book"
+    7. Warm, first-person, slightly playful tone, the way Alex writes
+
+
+PHASES
+
+  PHASE 1: Refactor + fixes (Claude). DONE
+    4 real pages, per-page CSS/JS, bug fixes, real workshop photos,
+    filter fix (.hide was losing to .gallery-item), new convert_images.py
+
+  PHASE 2: running at the same time (each agent in its own git worktree, own files only)
+    2a. Workshops agent: workshops.html, css/workshops.css, drafts/workshops-page-copy.md
+    2b. Store agent: store.html, css/store.css, js/store.js, netlify/, netlify.toml
+    2c. Claude: drafts/venue-outreach-email.md
+    Agents don't touch css/base.css, the header, or each other's files.
+
+  PHASE 3: Integrate + launch (Claude + Kilian)
+    Merge, add the Stripe key in Netlify, real Luma link, test purchase in Stripe
+    test mode, check on a phone, update README, deploy.
+
+
+KILIAN TODO
+  [ ] Stripe account (your name + bank). Verification can take ~1 day
+  [ ] Stripe restricted key: read-only for Products, Prices, Payment Links
+      -> add it in Netlify as STRIPE_RESTRICTED_KEY (test-mode key first)
+  [ ] Confirm Netlify deploys from GitHub (needed for the function to deploy)
+  [ ] Shipping rate in Stripe: "US shipping - $12"
+  [ ] Pirate Ship account + a stash of boxes and bubble wrap
+  [ ] First item from Alex -> add to Stripe (steps above)
+  [ ] New workshop photos -> run convert_images.py (or send them to Claude)
+  [ ] Workshop price + Luma link once the first venue is set
+  [ ] Answers for the FAQ (refunds, age limit, what pieces guests choose from)
+
+
+WISHLIST: collect at upcoming workshops
+  Photos
+  [ ] Wide shot: whole table mid-workshop, people laughing / talking
+  [ ] Alex demoing or helping someone (her face + guests)
+  [ ] Close-ups: hands painting, brushes, palettes, drinks on the table
+  [ ] Guests holding up their finished painted pieces
+  [ ] Group photo at the end with everyone's pieces
+  [ ] Finished FIRED pieces at pickup (the "after" shot)
+  [ ] The venue: storefront + room set up before guests arrive
+  [ ] Ask people (or put a small sign up) that photos may go on the website
+  Social proof
+  [ ] 3-5 short guest quotes (first name + OK to use)
+  [ ] Running count: workshops held, people who've painted
+  [ ] Names of venues hosted at (with their OK)
+  [ ] Tags/reposts from guests' Instagram stories
+  Nice to have
+  [ ] 15-30s video clip of a workshop (for Instagram + the page)
+  [ ] Email list sign-ups for "next workshop" announcements
+
+
+SOURCES
+  Payment Links, payment limits:  https://docs.stripe.com/payment-links/customer-info
+  Payment Link API object:        https://docs.stripe.com/api/payment_links/payment_links/object
+  Payment Links, shipping rates:  https://docs.stripe.com/payments/no-code/charge-shipping
+  Luma fees:                      https://help.luma.com/p/luma-vs-partiful
+  Luma embeds (Apple Pay caveat): https://help.luma.com/p/embed-luma-on-your-website
+  Pirate Ship, Ground Advantage:  https://www.pirateship.com/usps/ground-advantage

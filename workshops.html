@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Workshops | Alex K. Ceramics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- meta description & open graph tags -->
+    <meta name="description" content="Ceramic painting workshops with Alex K. at cafes and wine bars in New York. No experience needed: grab a drink, paint a handmade piece, pick it up fired two weeks later.">
+    <meta property="og:title" content="Ceramic Painting Workshops with Alex K.">
+    <meta property="og:description" content="Grab a drink, paint a handmade piece, take it home fired. No experience needed.">
+    <meta property="og:image" content="https://alexceramics.art/assets/workshops/painted-pieces.webp">
+    <meta property="og:url" content="https://alexceramics.art/workshops">
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/workshops.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HEADER (same on every page; only the "active" link changes) -->
+    <header>
+        <h1><a href="index.html">Alex K. Ceramics</a></h1>
+
+        <nav aria-label="Main Navigation">
+            <div class="nav-links">
+                <a class="nav-btn" href="index.html" data-text="My Work">My Work</a>
+                <a class="nav-btn active" aria-current="page" href="workshops.html" data-text="Workshops">Workshops</a>
+                <a class="nav-btn" href="store.html" data-text="Store">Store</a>
+                <a class="nav-btn" href="about.html" data-text="About">About</a>
+            </div>
+
+            <a class="social-link"
+               href="https://www.instagram.com/ceramics.alex"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Visit Alex's Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+            </a>
+        </nav>
+    </header>
+
+    <!-- WORKSHOPS
+         Facts: hosted at cafes / wine bars, 90 minutes, 2 drink minimum at the venue,
+         pieces are fired and ready for pickup at the same venue ~2 weeks later.
+         Full page build-out is Phase 2 in PLAN.txt. -->
+    <main class="workshops page">
+        <div class="workshops-overview">
+            <img class="workshops-hero" src="assets/workshops/teaching.webp" alt="Alex leading a ceramic painting workshop for a group seated at tables">
+            <div class="workshops-text">
+                <h2>Ceramic Painting Workshops</h2>
+                <p>Come hang out with us at a cafe or wine bar, sip a drink, and paint some ceramics! I make every piece by hand. You just bring yourself, some good vibes, and optionally some friends :)</p>
+                <p>After the workshop I'll take your piece to get fired, and you can pick it up at the same venue two weeks later.</p>
+                <!-- TODO(owner): replace href with the real Luma calendar/event URL -->
+                <p>For upcoming workshops, check <a class="text-link" href="#">Luma</a> or email <a class="text-link" href="mailto:alexkoe2001@gmail.com">alexkoe2001@gmail.com</a>.</p>
+            </div>
+        </div>
+
+        <section class="workshops-gallery-section">
+            <h2>From past workshops</h2>
+            <div class="workshops-gallery">
+                <img src="assets/workshops/painted-pieces.webp" alt="A table of freshly painted bowls and vases in soft pastel colors" loading="lazy">
+                <img src="assets/workshops/strawberry-bowl.webp" alt="A bowl painted with small pink strawberries" loading="lazy">
+                <img src="assets/workshops/tulip-bowl.webp" alt="A finished glazed bowl painted with two red tulips" loading="lazy">
+                <img src="assets/workshops/painting-closeup.webp" alt="A guest painting blue stripes onto a small vase" loading="lazy">
+                <img src="assets/workshops/palette.webp" alt="A paint palette, brushes, and a drink on the workshop table" loading="lazy">
+                <img src="assets/workshops/glazed-bowls.webp" alt="Two finished glazed bowls, one with tulips and one with blue flowers" loading="lazy">
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+</body>
+</html>
