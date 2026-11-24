@@ -18,7 +18,7 @@ SITE STRUCTURE
   tools/scripts/convert_images.py  photo -> named WebP (fixes phone rotation)
 
   The header is copied into all 4 pages. If you change it, change all 4.
-  Local dev: python3 -m http.server 8080  ->  http://127.0.0.1:8080
+  Local dev: python3 tools/dev_server.py  ->  http://127.0.0.1:8080 (no caching)
     (the store shows placeholder items from js/sample-products.json locally)
   Tests:     node --test tests/*.test.mjs
   drafts/, tests/, tools/ and PLAN.txt are blocked from the live site (netlify.toml)
