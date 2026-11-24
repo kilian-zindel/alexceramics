@@ -3,3 +3,5 @@ about.txt
 TODO.txt
 tools/Images/
 assets/temp/
+.secrets/
+.env
