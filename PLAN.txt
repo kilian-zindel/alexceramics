@@ -119,6 +119,47 @@ KILIAN TODO
   [ ] Answers for the FAQ (refunds, age limit, what pieces guests choose from)
 
 
+SANDBOX TEST CHECKLIST (Stripe test mode + a Netlify deploy preview)
+  Setup: restricted TEST key in Netlify (Deploy Previews context), push the branch,
+  open the deploy preview URL. Pay with test card 4242 4242 4242 4242, any future
+  date, any CVC. (Stripe sends no receipt emails in test mode; that's normal.)
+  [ ] 3 fake products (one without a photo), each with a Payment Link (limit 1,
+      US shipping + $12 rate, redirect -> <preview URL>/store.html?purchased=1)
+  [ ] All 3 show up on the store page with the right photo, price, description
+  [ ] metadata order = 1/2/3 changes the order (wait ~5 min for the cache)
+  [ ] Buy opens Stripe checkout in a new tab; address form is US only; shipping added
+  [ ] Pay -> lands on the thank-you note
+  [ ] ~5 min later that item shows "Sold"; Stripe Dashboard shows the payment + address
+  [ ] Deactivate a link by hand -> item disappears; archive a product -> disappears
+  [ ] Check it all on a phone (Apple Pay shows up on iPhone)
+  [ ] Then: switch Production to a LIVE restricted key and do one real $1 purchase + refund
+
+
+BUSINESS / LEGAL / TAX  (temporary setup: Kilian's name + personal bank)
+  Before the FIRST real sale:
+  [ ] NY sales tax: register for a Certificate of Authority (free, online via
+      NY Business Express). NY requires it even for occasional sales of taxable goods.
+      Apply 20+ days before selling. Then collect NY sales tax on orders shipped
+      within NY (NYC ~8.875%) and file returns (even $0 ones).
+      Easiest: turn on Stripe Tax for the Payment Links (0.5% per taxed sale).
+      Ask an accountant whether workshop tickets are taxable too.
+  Once there's steady revenue:
+  [ ] Business Certificate (DBA) at the county clerk (NYC ~$100-120). If it's Kilian +
+      Alex together, it's a partnership certificate; decide who owns what first.
+  [ ] Separate business bank account -> switch Stripe payouts + Luma payouts to it
+  [ ] Bookkeeping: track every sale, fee, shipping label, supplies, firing cost
+      (a spreadsheet is fine at first; Wave/QuickBooks later)
+  [ ] Taxes: profit is self-employment income (Schedule C, or a partnership return
+      if it's both of you). Put ~25-30% of profit aside; quarterly estimated taxes
+      once it adds up. A 1099-K from Stripe only comes above $20k + 200 sales,
+      but ALL income is reportable either way.
+  [ ] One session with an accountant once it's real (they'll sort the above in an hour)
+  Sources: https://www.tax.ny.gov/pubs_and_bulls/tg_bulletins/st/do_i_need_to_register_for_sales_tax.htm
+           https://ww2.nycourts.gov/courts/1jd/supctmanh/Business_Certificates.shtml
+           https://irs.gov/newsroom/irs-issues-faqs-on-form-1099-k-threshold-under-the-one-big-beautiful-bill-dollar-limit-reverts-to-20000
+           https://stripe.com/tax/pricing
+
+
 WISHLIST: collect at upcoming workshops
   Photos
   [ ] Wide shot: whole table mid-workshop, people laughing / talking

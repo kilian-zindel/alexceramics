@@ -71,8 +71,10 @@ function renderProduct(item, index) {
         card.append(el("span", "product-sold", "Sold"));
     } else if (item.url) {
         const buy = el("a", "text-link product-buy", "Buy");
-        buy.href = item.url; // same tab, so Stripe can redirect back here
-        buy.setAttribute("aria-label", `Buy ${item.title}`);
+        buy.href = item.url;
+        buy.target = "_blank"; // checkout opens in a new tab; the store stays open here
+        buy.rel = "noopener";
+        buy.setAttribute("aria-label", `Buy ${item.title} (opens in a new tab)`);
         card.append(buy);
     }
     return card;

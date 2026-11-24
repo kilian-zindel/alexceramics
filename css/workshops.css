@@ -29,17 +29,23 @@
     margin: 0;
 }
 
-/* "Book a spot": plain black outline, square corners, accent on hover */
+/* "Book a spot": styled like the active gallery filter on the home page
+   (bold + thick underline) so it feels native to the site, not a template button.
+   Previous outlined-box version: git tag design-v1 */
 
 .book-btn {
     display: inline-block;
     margin-top: 8px;
-    padding: 12px 28px;
-    border: 1px solid black;
+    padding-bottom: 6px;
+    border-bottom: 2px solid black;
     color: black;
     text-decoration: none;
-    font-size: 18px;
-    letter-spacing: 0.4px;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+}
+.book-btn::after {
+    content: " \2192"; /* → */
 }
 .book-btn:hover,
 .book-btn:focus-visible {
@@ -217,8 +223,15 @@
         align-items: flex-start;
         gap: 24px;
     }
+    /* Phones: text first, then a shorter landscape crop of the photo,
+       so the page doesn't open with one huge image. */
+    .workshops-text {
+        order: -1;
+    }
     .workshops-hero {
         width: 100%;
+        aspect-ratio: 4 / 3;
+        object-position: 50% 30%; /* keep Alex + guests' heads in frame */
     }
 
     .quick-facts {
