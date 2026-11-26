@@ -47,11 +47,6 @@
     border-color: var(--accent);
 }
 
-.workshops-text .book-note {
-    font-size: 15px;
-    color: var(--text-muted);
-}
-
 /* QUICK FACTS: one row between two hairlines */
 
 .quick-facts {
