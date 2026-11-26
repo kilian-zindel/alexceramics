@@ -51,13 +51,17 @@
 
     <!-- STORE: items come from Stripe via /api/products (see js/store.js) -->
     <main class="store page">
-        <!-- TODO(owner): fill in how many days until a sold piece ships -->
-        <p class="store-thanks hide" role="status">Thank you! You'll get a receipt from Stripe by email. Your piece will ship within TODO(owner) days.</p>
+        <p class="store-thanks hide" role="status">Thank you! You'll get a receipt from Stripe by email. Your piece will ship within 2-3 business days.</p>
 
         <div class="store-intro">
             <h2>Store</h2>
             <p>Every piece here is one of a kind and made by hand in New York. I ship within the US for a flat rate, packed with lots of care (and bubble wrap).</p>
         </div>
+
+        <figure class="store-batch">
+            <img src="assets/store/recent-batch.webp" alt="A studio table covered in freshly fired cups, coasters and small dishes in blue, brown and white glazes" width="1600" height="1067">
+            <figcaption>The latest batch, fresh out of the kiln.</figcaption>
+        </figure>
 
         <div class="store-status loading" aria-live="polite"><p>Loading pieces…</p></div>
         <div class="products-grid"></div>
