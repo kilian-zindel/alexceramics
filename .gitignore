@@ -1,9 +1,14 @@
+# secrets
+.env
+.secrets/
+
+# raw photos (only the optimized versions in assets/ are committed)
+assets/temp/
+assets/temp2/
+assets/products/
+tools/Images/
+
+# personal notes
 notes.txt
 about.txt
 TODO.txt
-tools/Images/
-assets/temp/
-.secrets/
-.env
-assets/temp2/
-assets/products/
