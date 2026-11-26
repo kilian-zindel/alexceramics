@@ -8,6 +8,25 @@
     margin-bottom: 0;
 }
 
+/* Recent batch photo under the intro */
+.store-batch {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.store-batch img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+}
+.store-batch figcaption {
+    font-size: 15px;
+    color: var(--text-muted);
+}
+
 /* Shown after Stripe redirects back with ?purchased=1 */
 .store-thanks {
     margin: 0;

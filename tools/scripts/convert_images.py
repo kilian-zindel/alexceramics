@@ -18,6 +18,7 @@ Output name = --name (single file only) or a slug of the original filename.
 Existing files are overwritten, so re-running with an enhanced photo just swaps it.
 
 Requires Pillow:  pip install pillow
+iPhone .heic photos also need:  pip install pillow-heif
 """
 
 import argparse
@@ -26,6 +27,12 @@ import re
 import sys
 
 from PIL import Image, ImageOps
+
+try:  # optional: lets Pillow open iPhone .heic photos
+    import pillow_heif
+    pillow_heif.register_heif_opener()
+except ImportError:
+    pillow_heif = None
 
 VALID_EXTENSIONS = (".jpg", ".jpeg", ".png", ".webp", ".heic", ".tiff", ".bmp")
 
@@ -79,6 +86,9 @@ def main():
     for src in args.photos:
         if not src.lower().endswith(VALID_EXTENSIONS):
             print(f"skipping {src} (not an image)")
+            continue
+        if src.lower().endswith(".heic") and pillow_heif is None:
+            print(f"skipping {src} (needs: pip install pillow-heif)")
             continue
         convert(src, args.out, args.name or slugify(src), args.width, args.quality)
 

@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- meta description & open graph tags -->
-    <meta name="description" content="Ceramic painting workshops with Alex K. at cafes and wine bars in New York. 90 minutes, everything provided, no experience needed. Paint a handmade bowl, vase or dish and pick it up fired two weeks later.">
+    <meta name="description" content="Ceramic painting workshops with Alex K. at cafes and wine bars in New York. $45, everything provided, no experience needed. Paint a handmade piece and pick it up fired about two weeks later.">
     <meta property="og:title" content="Ceramic Painting Workshops with Alex K.">
     <meta property="og:description" content="Grab a drink, paint a handmade piece, pick it up fired two weeks later. No experience needed. Cafes and wine bars in New York.">
-    <meta property="og:image" content="https://alexceramics.art/assets/workshops/teaching.webp">
+    <meta property="og:image" content="https://alexceramics.art/assets/workshops/painting-bowls.webp">
     <meta property="og:url" content="https://alexceramics.art/workshops">
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -55,11 +55,11 @@
 
         <!-- INTRO -->
         <section class="workshops-intro" aria-labelledby="workshops-title">
-            <img class="workshops-hero" src="assets/workshops/teaching.webp" alt="Alex standing at the front of a cafe, talking to a group of guests seated at workshop tables">
+            <img class="workshops-hero" src="assets/workshops/painting-bowls.webp" alt="Guests painting pink and green dots onto small bowls at a bar table, with drinks, lace placemats and a paint palette">
             <div class="workshops-text">
                 <h2 id="workshops-title">Ceramic Painting Workshops</h2>
-                <p>Come hang out with us at a cafe or wine bar, sip a drink, and paint some ceramics! I make every piece by hand, and you get to paint one: a bowl, a vase, or a small dish.</p>
-                <p>Everything is provided and no experience is needed. You just bring yourself, some good vibes, and optionally some friends :)</p>
+                <p>Come hang out with us at a cafe or wine bar, sip a drink, and paint some ceramics! I make every piece by hand, and you get to paint one, usually a bowl or a coaster.</p>
+                <p>Everything is provided (ceramics, paint, brushes) and no experience is needed. You just bring yourself, some good vibes, and optionally some friends :)</p>
                 <!-- TODO(owner): Luma event URL -->
                 <a class="book-btn" href="#">Book a spot</a>
             </div>
@@ -68,11 +68,10 @@
         <!-- QUICK FACTS -->
         <section aria-label="Quick facts">
             <ul class="quick-facts">
-                <li>90 minutes</li>
-                <!-- TODO(owner): price -->
-                <li>$XX per person</li>
-                <li>All materials included</li>
-                <li>2-drink minimum at the venue</li>
+                <li>$45 per person</li>
+                <li>Everything provided</li>
+                <li>Weeknights from 6:30pm</li>
+                <li>2-item minimum at the venue</li>
                 <li>Pick it up fired in about 2 weeks</li>
             </ul>
         </section>
@@ -83,15 +82,15 @@
             <ol class="steps">
                 <li>
                     <h3>Grab a drink and pick a piece</h3>
-                    <p>Order something from the venue (there's a 2-drink minimum) and choose a bowl, vase or small dish I made.</p>
+                    <p>Order something from the venue (there's a 2-item minimum, food or drinks) and choose a piece I made.</p>
                 </li>
                 <li>
                     <h3>Paint</h3>
-                    <p>Paint it however you like. Everything you need is on the table.</p>
+                    <p>Paint it however you like. Paint, brushes and everything else you need are on the table.</p>
                 </li>
                 <li>
                     <h3>Pick it up, fired</h3>
-                    <p>After the workshop I take your piece to be fired. It's ready to pick up at the same venue about two weeks later.</p>
+                    <p>After the workshop I take your piece home to fire it, then drop it back at the venue. It's ready to pick up about two weeks later.</p>
                 </li>
             </ol>
         </section>
@@ -102,12 +101,38 @@
         <section class="workshops-section" aria-labelledby="gallery-title">
             <h2 id="gallery-title">From past workshops</h2>
             <div class="workshops-gallery">
-                <img src="assets/workshops/painting-closeup.webp" alt="A guest painting blue stripes onto a small vase" loading="lazy">
-                <img src="assets/workshops/palette.webp" alt="A guest rinsing a brush beside a paint palette and a drink on the workshop table" loading="lazy">
+                <img src="assets/workshops/painting-table.webp" alt="Guests painting small bowls at a bar table with drinks, olives and a paint palette" loading="lazy">
+                <img src="assets/workshops/heart-cup.webp" alt="Guests painting cups and bowls; one holds a cup with a heart design" loading="lazy">
+                <img src="assets/workshops/round-table.webp" alt="A round table set for a workshop: lace placemats, handmade spoons, brushes and paint palettes" loading="lazy">
+                <img src="assets/workshops/patio-setup.webp" alt="A row of tables on a back patio under string lights, set with bowls, placemats and candles" loading="lazy">
+                <img src="assets/workshops/blossom-bowl.webp" alt="A small bowl painted with a pink blossom branch, next to a real branch of berries" loading="lazy">
                 <img src="assets/workshops/painted-pieces.webp" alt="A table of freshly painted bowls and vases in soft pastel colors" loading="lazy">
-                <img src="assets/workshops/strawberry-bowl.webp" alt="A hand holding a bowl painted with small pink strawberries" loading="lazy">
-                <img src="assets/workshops/tulip-bowl.webp" alt="A finished glazed bowl painted with two red tulips" loading="lazy">
-                <img src="assets/workshops/glazed-bowls.webp" alt="Two finished glazed bowls, one with tulips and one with blue flowers" loading="lazy">
+            </div>
+        </section>
+
+        <!-- BEFORE / AFTER
+             Paint looks pale and chalky until it's fired, so show both.
+             To add a pair: copy one <figure class="pair"> block. -->
+        <section class="workshops-section" aria-labelledby="fired-title">
+            <div class="section-head">
+                <h2 id="fired-title">Before and after the kiln</h2>
+                <p>The paint looks soft and chalky while you work. Firing turns it bright and glossy.</p>
+            </div>
+            <div class="before-after">
+                <figure class="pair">
+                    <div class="pair-images">
+                        <img src="assets/workshops/ducks-before.webp" alt="A cup painted with two ducks and a heart wreath, pale and matte before firing" loading="lazy">
+                        <img src="assets/workshops/ducks-after.webp" alt="The same duck cup after firing, with bright yellow ducks and a glossy finish" loading="lazy">
+                    </div>
+                    <figcaption><span>Painted</span><span>Fired</span></figcaption>
+                </figure>
+                <figure class="pair">
+                    <div class="pair-images">
+                        <img src="assets/workshops/flowers-before.webp" alt="A cup painted with light blue flowers, pale and matte before firing" loading="lazy">
+                        <img src="assets/workshops/flowers-after.webp" alt="The same flower cup after firing, with deep blue flowers and a glossy finish" loading="lazy">
+                    </div>
+                    <figcaption><span>Painted</span><span>Fired</span></figcaption>
+                </figure>
             </div>
         </section>
 
@@ -116,7 +141,6 @@
             <img class="teacher-photo" src="assets/alex.jpg" alt="Portrait of ceramic artist Alex K." loading="lazy">
             <div class="teacher-text">
                 <h2 id="teacher-title">Who's teaching</h2>
-                <!-- TODO(owner): add a line about the MFA at Brooklyn College if it's current -->
                 <p>Hi, I'm Alex! I'm a ceramic artist in New York, and I came to clay from painting. I make wares, sculpture, and glaze paintings, and I taught ceramics for a year, including starting a program at a school on Chicago's South Side.</p>
                 <p>See more of my work on the <a class="text-link" href="index.html">home page</a>.</p>
             </div>
@@ -135,13 +159,16 @@
                     <p>Yes! Come solo or bring your friends. Either way works.</p>
                 </details>
                 <details>
+                    <summary>When are workshops?</summary>
+                    <p>Weeknights, starting between 6:30 and 7pm, and some weekends too. Check the booking page for the next dates.</p>
+                </details>
+                <details>
                     <summary>What do I paint?</summary>
-                    <!-- TODO(owner): how do guests choose their piece (on the day / when booking)? -->
-                    <p>A piece I made by hand: bowls, vases and small dishes.</p>
+                    <p>A piece I made by hand, usually a bowl or a coaster.</p>
                 </details>
                 <details>
                     <summary>When do I get my piece?</summary>
-                    <p>After the workshop I take everything to be fired. You pick yours up at the same venue about two weeks later.</p>
+                    <p>I take everything home to be fired and bring it back to the same venue about two weeks later. You pick yours up there.</p>
                 </details>
                 <details>
                     <summary>Can I get a refund if I can't make it?</summary>
