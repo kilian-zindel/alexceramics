@@ -1,0 +1,41 @@
+# Static site, no build step. Netlify publishes the repo root as-is.
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Product photos uploaded in the Stripe Dashboard are served from files.stripe.com.
+# Allowlisting it lets store.html use /.netlify/images?url=... to resize them.
+# https://docs.netlify.com/build/image-cdn/overview/
+[images]
+  remote_images = ['https://files\.stripe\.com/.*']
+
+# Repo-only files: don't serve these on the live site.
+[[redirects]]
+  from = "/drafts/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/tests/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/tools/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/PLAN.txt"
+  to = "/404"
+  status = 404
+  force = true
+
+# The About page was folded into the home page, workshops page and footer.
+[[redirects]]
+  from = "/about*"
+  to = "/"
+  status = 301

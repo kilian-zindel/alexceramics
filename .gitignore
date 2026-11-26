@@ -2,3 +2,10 @@ notes.txt
 about.txt
 TODO.txt
 tools/Images/
+assets/temp/
+.claude/
+.secrets/
+.env
+assets/temp2/
+assets/products/
+tools/stripe-links.mjs
