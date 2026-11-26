@@ -8,3 +8,4 @@ assets/temp/
 .env
 assets/temp2/
 assets/products/
+tools/stripe-links.mjs
