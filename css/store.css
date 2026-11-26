@@ -1,0 +1,123 @@
+/* STORE PAGE: items are drawn by js/store.js from /api/products (Stripe) */
+
+.store-intro {
+    max-width: 600px;
+}
+
+.store-intro p {
+    margin-bottom: 0;
+}
+
+/* Recent batch photo under the intro */
+.store-batch {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.store-batch img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+}
+.store-batch figcaption {
+    font-size: 15px;
+    color: var(--text-muted);
+}
+
+/* Shown after Stripe redirects back with ?purchased=1 */
+.store-thanks {
+    margin: 0;
+    max-width: 600px;
+    padding-left: 16px;
+    border-left: 2px solid black;
+}
+
+/* Loading / empty / error message */
+.store-status {
+    max-width: 600px;
+}
+.store-status p {
+    margin: 0;
+}
+.store-status.loading {
+    color: var(--text-muted);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 56px 32px;
+}
+.products-grid:empty {
+    display: none;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.product-image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 8px;
+    background-color: #f4f4f4; /* placeholder while the photo loads */
+}
+
+.product-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+}
+
+.product-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1.3;
+}
+
+.product-price {
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+.product-description {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.product-buy,
+.product-sold {
+    align-self: flex-start;
+    margin-top: 4px;
+    font-size: 18px;
+}
+
+.product-sold {
+    color: var(--text-muted);
+}
+
+/* Sold pieces stay up, just quieter */
+.product.sold .product-image {
+    opacity: 0.6;
+    filter: grayscale(60%);
+}
+.product.sold .product-title,
+.product.sold .product-price {
+    color: var(--text-muted);
+}
+
+@media (max-width: 750px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+}
