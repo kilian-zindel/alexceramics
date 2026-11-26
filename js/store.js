@@ -23,10 +23,18 @@ if (new URLSearchParams(location.search).has("purchased")) {
 }
 
 // Remote (Stripe-hosted) photos go through Netlify's Image CDN: resized + WebP.
-// Local paths (sample data) are used as-is.
-function imageSrc(url) {
-    if (IS_LOCAL || !/^https?:\/\//.test(url)) return url;
-    return `/.netlify/images?url=${encodeURIComponent(url)}&w=800&fm=webp`;
+// The browser picks the smallest width that's still sharp on its screen
+// (a phone at 3x needs ~1200px). Local paths (sample data) are used as-is.
+const IMAGE_WIDTHS = [600, 900, 1200, 1600];
+const IMAGE_SIZES = "(max-width: 750px) 100vw, 340px"; // 1 column on phones, 3 on desktop
+
+function isRemote(url) {
+    return !IS_LOCAL && /^https?:\/\//.test(url);
+}
+
+function imageSrc(url, width = 1200) {
+    if (!isRemote(url)) return url;
+    return `/.netlify/images?url=${encodeURIComponent(url)}&w=${width}&q=85&fm=webp`;
 }
 
 function formatPrice(amount, currency) {
@@ -55,6 +63,10 @@ function renderProduct(item, index) {
     if (item.image) {
         const img = el("img", "product-image");
         img.src = imageSrc(item.image);
+        if (isRemote(item.image)) {
+            img.srcset = IMAGE_WIDTHS.map((w) => `${imageSrc(item.image, w)} ${w}w`).join(", ");
+            img.sizes = IMAGE_SIZES;
+        }
         img.alt = item.title;
         if (index >= 3) img.loading = "lazy"; // first row loads right away
         card.append(img);
