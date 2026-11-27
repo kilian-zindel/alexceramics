@@ -8,6 +8,21 @@
     margin-bottom: 0;
 }
 
+/* Refund policy line near the items (NY GBL 218-a); also on product pages */
+.store-intro .store-terms {
+    margin-top: 12px;
+}
+.store-terms {
+    font-size: 15px;
+    color: var(--text-muted);
+}
+.store-terms .text-link {
+    color: var(--text-muted);
+}
+.store-terms .text-link:hover {
+    color: var(--accent);
+}
+
 /* Recent batch photo under the intro */
 .store-batch {
     margin: 0;
