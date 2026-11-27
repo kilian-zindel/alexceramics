@@ -1,62 +1,17 @@
-// Tests for netlify/functions/products.mjs. Run: node --test tests/
+// Tests for netlify/functions/products.mjs (and the shared Stripe loader in
+// netlify/lib/stripe-products.mjs). Run: node --test (from the repo root)
 // Stripe is faked by replacing globalThis.fetch.
 
 import { test, beforeEach, afterEach } from "node:test";
 import assert from "node:assert/strict";
 import handler, { config, isSold } from "../netlify/functions/products.mjs";
+import { product, link, soldLink, fakeStripe as fakeStripeImpl } from "./helpers/fake-stripe.mjs";
 
 const realFetch = globalThis.fetch;
 const realError = console.error;
 let calls;
 
-function product(id, extra = {}) {
-    return {
-        id: `prod_${id}`, object: "product", active: true, name: `Piece ${id}`,
-        description: `About ${id}`, images: [`https://files.stripe.com/links/${id}`],
-        metadata: {}, created: 1700000000, ...extra,
-    };
-}
-
-function link(id, extra = {}) {
-    return {
-        id: `plink_${id}`, object: "payment_link", active: true,
-        url: `https://buy.stripe.com/test_${id}`, restrictions: null, ...extra,
-    };
-}
-
-// pages: array of arrays of links (one per /payment_links page)
-// products: { [linkId]: { product, unit_amount, currency } }
-function fakeStripe(pages, products) {
-    globalThis.fetch = async (input, init) => {
-        const url = new URL(String(input));
-        calls.push({ url, init });
-        const json = (body, status = 200) =>
-            new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
-
-        if (url.pathname === "/v1/payment_links") {
-            const after = url.searchParams.get("starting_after");
-            let i = 0;
-            if (after) i = pages.findIndex((p) => p.at(-1)?.id === after) + 1;
-            return json({ object: "list", data: pages[i] ?? [], has_more: i < pages.length - 1 });
-        }
-        const m = url.pathname.match(/^\/v1\/payment_links\/([^/]+)\/line_items$/);
-        if (m) {
-            const p = products[m[1]];
-            if (!p) return json({ error: { message: "No such payment link" } }, 404);
-            return json({
-                object: "list", has_more: false,
-                data: [{
-                    object: "item", quantity: 1,
-                    price: {
-                        object: "price", type: "one_time", currency: p.currency ?? "usd",
-                        unit_amount: p.unit_amount ?? 4500, product: p.product,
-                    },
-                }],
-            });
-        }
-        return json({ error: { message: "unexpected" } }, 400);
-    };
-}
+const fakeStripe = (pages, products) => fakeStripeImpl(pages, products, calls);
 
 async function call() {
     const res = await handler(new Request("https://example.com/api/products"), {});
@@ -83,8 +38,10 @@ test("active link is listed for sale with price in major units", async () => {
     const { res, body } = await call();
     assert.equal(res.status, 200);
     assert.deepEqual(body, [{
-        id: "plink_a", title: "Piece a", description: "About a", price: 45.5, currency: "usd",
-        image: "https://files.stripe.com/links/a", url: "https://buy.stripe.com/test_a",
+        id: "plink_a", productId: "prod_a", slug: "piece-a", title: "Piece a", description: "About a",
+        price: 45.5, currency: "usd",
+        image: "https://files.stripe.com/links/a", images: ["https://files.stripe.com/links/a"],
+        url: "https://buy.stripe.com/test_a", pageUrl: "/store/piece-a",
         sold: false, created: 1700000000,
     }]);
     assert.match(res.headers.get("Netlify-CDN-Cache-Control"), /max-age=300/);
@@ -96,12 +53,13 @@ test("active link is listed for sale with price in major units", async () => {
 });
 
 test("inactive link that hit its payment limit is sold, with no url", async () => {
-    const sold = link("s", { active: false, restrictions: { completed_sessions: { count: 1, limit: 1 } } });
+    const sold = soldLink("s");
     fakeStripe([[sold]], { plink_s: { product: product("s") } });
     const { body } = await call();
     assert.equal(body.length, 1);
     assert.equal(body[0].sold, true);
     assert.equal(body[0].url, null);
+    assert.equal(body[0].pageUrl, "/store/piece-s"); // sold pieces keep their page
 });
 
 test("manually deactivated link (count < limit, or no limit) is hidden", async () => {
@@ -175,4 +133,40 @@ test("isSold", () => {
     assert.equal(isSold({ active: true, restrictions: { completed_sessions: { count: 1, limit: 1 } } }), false);
     assert.equal(isSold({ active: false, restrictions: { completed_sessions: { count: 2, limit: 1 } } }), true);
     assert.equal(isSold({ active: false, restrictions: null }), false);
+});
+
+test("all product images are returned; image is the first", async () => {
+    const imgs = ["https://files.stripe.com/links/1", "https://files.stripe.com/links/2", "https://files.stripe.com/links/3"];
+    fakeStripe([[link("a")]], { plink_a: { product: product("a", { images: imgs }) } });
+    const { body } = await call();
+    assert.deepEqual(body[0].images, imgs);
+    assert.equal(body[0].image, imgs[0]);
+});
+
+test("product without images has image null and images []", async () => {
+    fakeStripe([[link("a")]], { plink_a: { product: product("a", { images: [] }) } });
+    const { body } = await call();
+    assert.equal(body[0].image, null);
+    assert.deepEqual(body[0].images, []);
+});
+
+test("slugs: metadata.slug wins, else the name; collisions get -2, -3 by created", async () => {
+    fakeStripe([[link("n3"), link("n1"), link("n2"), link("m"), link("acc")]], {
+        // three pieces with the same name; n1 is oldest, then n2, then n3
+        plink_n3: { product: product("n3", { name: "Blue Cup", created: 1700000300 }) },
+        plink_n1: { product: product("n1", { name: "Blue Cup", created: 1700000100 }) },
+        plink_n2: { product: product("n2", { name: "Blue  cup!", created: 1700000200 }) },
+        // newest, but its hand-set slug claims "blue-cup" before the name-based ones
+        plink_m: { product: product("m", { name: "Something else", created: 1700000400, metadata: { slug: "Blue Cup" } }) },
+        plink_acc: { product: product("acc", { name: "Crème Brûlée Dish & Lid", created: 1700000500 }) },
+    });
+    const { body } = await call();
+    const slugOf = (id) => body.find((p) => p.id === id).slug;
+    assert.equal(slugOf("plink_m"), "blue-cup");
+    assert.equal(slugOf("plink_n1"), "blue-cup-2");
+    assert.equal(slugOf("plink_n2"), "blue-cup-3");
+    assert.equal(slugOf("plink_n3"), "blue-cup-4");
+    assert.equal(slugOf("plink_acc"), "creme-brulee-dish-and-lid");
+    assert.equal(new Set(body.map((p) => p.slug)).size, body.length);
+    for (const p of body) assert.equal(p.pageUrl, `/store/${p.slug}`);
 });
