@@ -6,13 +6,18 @@
 //      Links from Stripe with a read-only key and returns them as JSON, cached ~5 min.
 //   3. This script fetches that JSON and draws the grid. "Buy" opens the Stripe
 //      Payment Link; after paying, Stripe sends the buyer back to store.html?purchased=1.
-//      When a piece sells, Stripe turns its link off and it shows here as "Sold".
+//      When a piece sells, Stripe turns its link off and it shows here as "Sold"
+//      (sold pieces are listed after the ones for sale).
+//   4. Each card's photo and title link to the piece's own page, /store/<slug>
+//      (netlify/functions/product-page.mjs), which Pinterest can read.
 
 const IS_LOCAL = ["localhost", "127.0.0.1"].includes(location.hostname);
 
-// LOCAL DEV SWITCH: python3 -m http.server can't run Netlify Functions, so on
-// localhost we load placeholder items from js/sample-products.json instead.
-const PRODUCTS_URL = IS_LOCAL ? "js/sample-products.json" : "/api/products";
+// LOCAL DEV: tools/dev-server.mjs serves /api/products (and the product pages)
+// from sample data. The plain Python server can't, so on localhost we fall back
+// to js/sample-products.json, without product page links.
+const PRODUCTS_URL = "/api/products";
+const SAMPLE_URL = "js/sample-products.json";
 
 const grid = document.querySelector(".products-grid");
 const statusEl = document.querySelector(".store-status");
@@ -57,6 +62,15 @@ function el(tag, className, text) {
     return node;
 }
 
+// Wraps a node in a link to the product page (when there is one).
+function linkTo(item, child, className) {
+    if (!item.pageUrl) return child;
+    const a = el("a", className);
+    a.href = item.pageUrl;
+    a.append(child);
+    return a;
+}
+
 function renderProduct(item, index) {
     const card = el("article", "product" + (item.sold ? " sold" : ""));
 
@@ -69,11 +83,13 @@ function renderProduct(item, index) {
         }
         img.alt = item.title;
         if (index >= 3) img.loading = "lazy"; // first row loads right away
-        card.append(img);
+        card.append(linkTo(item, img, "product-image-link"));
     }
 
     const head = el("div", "product-head");
-    head.append(el("h3", "product-title", item.title));
+    const title = el("h3", "product-title");
+    title.append(linkTo(item, document.createTextNode(item.title), "product-link"));
+    head.append(title);
     head.append(el("span", "product-price", formatPrice(item.price, item.currency)));
     card.append(head);
 
@@ -106,16 +122,37 @@ function showFallback(message) {
     statusEl.classList.remove("loading");
 }
 
+async function fetchJson(url) {
+    const res = await fetch(url, { headers: { Accept: "application/json" } });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+}
+
+async function fetchProducts() {
+    if (!IS_LOCAL) return fetchJson(PRODUCTS_URL);
+    try {
+        return await fetchJson(PRODUCTS_URL);
+    } catch {
+        // Python dev server: no functions, so no product pages either.
+        const items = await fetchJson(SAMPLE_URL);
+        return items.map(({ pageUrl, ...item }) => item);
+    }
+}
+
+// For sale first, sold after (the API already sorts this way; keep it true for
+// the sample fallback too). Array.prototype.sort is stable.
+function forSaleFirst(products) {
+    return [...products].sort((a, b) => Number(!!a.sold) - Number(!!b.sold));
+}
+
 async function loadStore() {
     try {
-        const res = await fetch(PRODUCTS_URL, { headers: { Accept: "application/json" } });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const products = await res.json();
+        const products = await fetchProducts();
         if (!Array.isArray(products) || products.length === 0) {
             showFallback("New pieces coming soon!");
             return;
         }
-        grid.replaceChildren(...products.map(renderProduct));
+        grid.replaceChildren(...forSaleFirst(products).map(renderProduct));
         statusEl.remove();
     } catch (err) {
         console.error("Store failed to load:", err);

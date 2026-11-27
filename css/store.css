@@ -8,6 +8,21 @@
     margin-bottom: 0;
 }
 
+/* Refund policy line near the items (NY GBL 218-a); also on product pages */
+.store-intro .store-terms {
+    margin-top: 12px;
+}
+.store-terms {
+    font-size: 15px;
+    color: var(--text-muted);
+}
+.store-terms .text-link {
+    color: var(--text-muted);
+}
+.store-terms .text-link:hover {
+    color: var(--accent);
+}
+
 /* Recent batch photo under the intro */
 .store-batch {
     margin: 0;
@@ -70,6 +85,19 @@
     display: block;
     margin-bottom: 8px;
     background-color: #f4f4f4; /* placeholder while the photo loads */
+}
+
+/* Photo and title link to the piece's own page (/store/<slug>) */
+.product-image-link {
+    display: block;
+}
+.product-link {
+    color: inherit;
+    text-decoration: none;
+}
+.product-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
 }
 
 .product-head {
