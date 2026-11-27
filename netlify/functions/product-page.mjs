@@ -122,7 +122,7 @@ export function productJsonLd(product, canonical) {
                 shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" },
                 deliveryTime: {
                     "@type": "ShippingDeliveryTime",
-                    handlingTime: { "@type": "QuantitativeValue", minValue: 2, maxValue: 3, unitCode: "DAY" },
+                    handlingTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 5, unitCode: "DAY" },
                 },
             },
             hasMerchantReturnPolicy: {
@@ -250,7 +250,7 @@ export function renderPage(product, more = []) {
                 ${product.description ? `<p class="product-page-description">${e(product.description)}</p>` : ""}
                 ${action}
                 <p class="store-terms">All sales final &middot; Prices in US dollars &middot; <a class="text-link" href="/policies.html#returns">Shipping &amp; returns</a></p>
-                <p class="product-page-terms"><a class="text-link" href="/policies.html#shipping">$12 flat shipping in the US</a> &middot; ships in 2&ndash;3 business days</p>
+                <p class="product-page-terms"><a class="text-link" href="/policies.html#shipping">$12 flat shipping in the US</a> &middot; ships within 5 business days</p>
             </div>
         </div>
         ${moreSection}
