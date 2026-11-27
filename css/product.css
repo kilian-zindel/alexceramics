@@ -1,0 +1,107 @@
+/* PRODUCT PAGE (/store/<slug>): rendered by netlify/functions/product-page.mjs.
+   Loaded after store.css, which it reuses for the price, Buy, Sold and the
+   "Available now" cards. */
+
+.product-page {
+    gap: 40px;
+}
+
+.product-back {
+    align-self: flex-start;
+    font-size: 18px;
+}
+
+.product-layout {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 48px;
+    align-items: start;
+}
+
+/* Photos are never cropped: natural aspect ratio, and "contain" if the
+   main photo has to be shorter than the screen. */
+.product-photos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.product-photo-main,
+.product-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background-color: #f4f4f4; /* placeholder while the photo loads */
+}
+.product-photo-main {
+    max-height: 85vh;
+}
+.product-photo-strip {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.product-info p {
+    margin: 0;
+}
+
+.product-page-title {
+    font-size: 26px;
+}
+
+.product-page-price {
+    font-size: 20px;
+}
+
+.product-page-description {
+    color: var(--text-muted);
+    white-space: pre-line; /* keep line breaks typed in Stripe */
+}
+
+.product-info .product-buy,
+.product-info .product-sold {
+    margin-top: 8px;
+    font-size: 20px;
+}
+
+.product-page-terms {
+    margin-top: 8px !important;
+    font-size: 15px;
+    color: var(--text-muted);
+}
+.product-page-terms .text-link {
+    color: var(--text-muted);
+}
+.product-page-terms .text-link:hover {
+    color: var(--accent);
+}
+
+/* Sold: same quieter look as sold cards in the store */
+.product-page.sold .product-photos img {
+    opacity: 0.6;
+    filter: grayscale(60%);
+}
+.product-page.sold .product-page-title,
+.product-page.sold .product-page-price {
+    color: var(--text-muted);
+}
+
+.product-more {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+@media (max-width: 750px) {
+    .product-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
